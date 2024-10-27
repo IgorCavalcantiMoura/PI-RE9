@@ -9,9 +9,48 @@
   <img src="https://img.shields.io/badge/typeorm-FE0803?style=for-the-badge&logo=typeorm&logoColor=white">
 </p>
 
-<p align="center">
-  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjlyNjNhMWFvNGMwd3d5cTA3ZTE2MHdvaG9rY3M4b2pjb3BibzN1OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JVvNVItg3I51n08Th2/200.webp"/>
-</p>
+```geojson
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "ID": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -90,
+              35
+            ],
+            [
+              -90,
+              30
+            ],
+            [
+              -85,
+              30
+            ],
+            [
+              -85,
+              35
+            ],
+            [
+              -90,
+              35
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
+```
+
 Esta é uma plataforma para o cadastro e busca de vagas de emprego, desenvolvida para a empresa Re9Ação Soluções Integradas. O objetivo principal é informatizar o processo de recrutamento e seleção, priorizando a proximidade entre os candidatos e as empresas com base na localização.
 
 
