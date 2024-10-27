@@ -5,6 +5,8 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { Usuario } from './usuario/entities/usuario.entity';
 import { Empresa } from './empresas/entities/empresa.entity';
 import { EmpresasModule } from './empresas/empresas.module';
+import { Candidato } from './candidatos/entities/candidato.entity';
+import { CandidatoModule } from './candidatos/candidatos.module';
 
 
 @Module({
@@ -16,12 +18,13 @@ import { EmpresasModule } from './empresas/empresas.module';
       username: 'root',
       password: 'root',
       database: 'db_re9',
-      entities: [Usuario, Empresa],
+      entities: [Usuario, Empresa, Candidato],
       synchronize: true,
     }),
     AuthModule,
     UsuarioModule,
-    EmpresasModule
+    EmpresasModule,
+    CandidatoModule
   ],
   controllers: [],
   providers: [],
