@@ -57,7 +57,12 @@ DATABASE_NAME=nome_do_banco
 ```
 npm run start
 ```
-O servidor será executado em http://localhost:3000.
+<br>
+
+> [!NOTE]
+> O servidor será executado em http://localhost:3000.
+
+<br>
 
 ## 🤝 Como Contribuir
 
