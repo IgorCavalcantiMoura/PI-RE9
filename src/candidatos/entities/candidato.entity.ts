@@ -21,7 +21,7 @@ export class Candidato {
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
 
-  @Column({ type: 'blob', nullable: true }) // Armazenando como BLOB
+  @Column({ type: 'bytea', nullable: true }) // Armazenando como BLOB
   curriculo: Buffer;
 
   @CreateDateColumn()
