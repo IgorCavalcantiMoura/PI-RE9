@@ -15,7 +15,7 @@ import { AppController } from './app.controller';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: DevService,
+      useClass: ProdService,
       imports: [ConfigModule],
     }),
     AuthModule,
