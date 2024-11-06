@@ -8,5 +8,6 @@ import { CandidatoController } from "./controllers/candidato.controller";
     imports: [TypeOrmModule.forFeature([Candidato])],
     providers: [CandidatoService],
     controllers: [CandidatoController],
+    exports: [TypeOrmModule]
   })
   export class CandidatoModule {}

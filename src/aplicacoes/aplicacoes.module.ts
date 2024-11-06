@@ -11,6 +11,7 @@ import { VagaService } from '../vagas/services/vagas.service';
 @Module({
     imports: [TypeOrmModule.forFeature([Aplicacao]), CandidatoModule, VagasModule],
     providers: [AplicacaoService, CandidatoService, VagaService],
-    controllers: [AplicacaoController]
+    controllers: [AplicacaoController],
+    exports: [TypeOrmModule]
 })
 export class AplicacoesModule {}

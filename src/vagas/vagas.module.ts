@@ -9,5 +9,6 @@ import { VagaController } from './controllers/vagas.controller';
     imports: [TypeOrmModule.forFeature([Vaga]), HttpModule],
     providers: [VagaService],
     controllers: [VagaController],
+    exports: [TypeOrmModule]
   })
 export class VagasModule {}
