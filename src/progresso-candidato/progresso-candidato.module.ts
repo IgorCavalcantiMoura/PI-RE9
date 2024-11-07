@@ -9,10 +9,12 @@ import { FaseModule } from '../fase/fase.module';
 import { FaseService } from '../fase/services/fase.service';
 import { CandidatoModule } from '../candidatos/candidatos.module';
 import { CandidatoService } from '../candidatos/services/candidato.service';
+import { VagasModule } from '../vagas/vagas.module';
+import { VagaService } from '../vagas/services/vagas.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ProgressoCandidato]), AplicacoesModule, FaseModule, CandidatoModule],
-    providers: [ProgressoCandidatoService, AplicacaoService, FaseService, CandidatoService],
+    imports: [TypeOrmModule.forFeature([ProgressoCandidato]), AplicacoesModule, FaseModule, CandidatoModule, VagasModule],
+    providers: [ProgressoCandidatoService, AplicacaoService, FaseService, CandidatoService, VagaService],
     controllers: [ProgressoCandidatoController],
     exports: [TypeOrmModule]
 })
