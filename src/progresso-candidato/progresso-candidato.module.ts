@@ -11,10 +11,13 @@ import { CandidatoModule } from '../candidatos/candidatos.module';
 import { CandidatoService } from '../candidatos/services/candidato.service';
 import { VagasModule } from '../vagas/vagas.module';
 import { VagaService } from '../vagas/services/vagas.service';
+import { HttpModule } from '@nestjs/axios';
+import { EmpresasModule } from '../empresas/empresas.module';
+import { EmpresasService } from '../empresas/services/empresa.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ProgressoCandidato]), AplicacoesModule, FaseModule, CandidatoModule, VagasModule],
-    providers: [ProgressoCandidatoService, AplicacaoService, FaseService, CandidatoService, VagaService],
+    imports: [TypeOrmModule.forFeature([ProgressoCandidato]), AplicacoesModule, FaseModule, CandidatoModule, VagasModule, HttpModule, EmpresasModule],
+    providers: [ProgressoCandidatoService, AplicacaoService, FaseService, CandidatoService, VagaService, EmpresasService],
     controllers: [ProgressoCandidatoController],
     exports: [TypeOrmModule]
 })
