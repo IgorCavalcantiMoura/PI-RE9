@@ -41,7 +41,7 @@ export class Candidato {
     format: 'binary',
     required: false,
   })
-  @Column({ type: 'bytea', nullable: true })
+  @Column({ type: 'blob', nullable: true })
   curriculo: Buffer;
 
   @ApiProperty({ description: 'Data de criação do registro', type: Date })

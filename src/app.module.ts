@@ -11,13 +11,14 @@ import { AplicacoesModule } from './aplicacoes/aplicacoes.module';
 import { DevService } from './data/services/dev.service';
 import { AppController } from './app.controller';
 import { FaseModule } from './fase/fase.module';
+import { ProgressoDoCandidatoModule } from './progresso-do-candidato/progresso-do-candidato.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: ProdService,
+      useClass: DevService,
       imports: [ConfigModule],
     }),
     AuthModule,
@@ -27,6 +28,7 @@ import { FaseModule } from './fase/fase.module';
     VagasModule,
     AplicacoesModule,
     FaseModule,
+    ProgressoDoCandidatoModule,
   ],
   controllers: [AppController],
   providers: [],

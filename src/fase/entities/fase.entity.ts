@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Vaga } from '../../vagas/entities/vagas.entity';
+import { ProgressoCandidato } from '../../progresso-do-candidato/entities/progressoDoCandidato.entity';
 
 @Entity({name: 'tb_fase'})
 export class Fase {
@@ -19,4 +20,7 @@ export class Fase {
   @ManyToOne(() => Vaga, (vaga) => vaga.fases, { onDelete: 'CASCADE' })
   @ApiProperty({ description: 'Vaga associada a esta fase', type: () => Vaga })
   vaga: Vaga;
+
+  @OneToMany(() => ProgressoCandidato, (progressoCandidato) => progressoCandidato.fase)
+  progressoCandidatos: ProgressoCandidato[];
 }
