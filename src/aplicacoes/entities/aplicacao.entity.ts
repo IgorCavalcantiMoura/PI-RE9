@@ -9,6 +9,7 @@ import {
 import { Candidato } from '../../candidatos/entities/candidato.entity';
 import { Vaga } from '../../vagas/entities/vagas.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { ProgressoCandidato } from '../../progresso-do-candidato/entities/progressoDoCandidato.entity';
 
 @Entity({ name: 'tb_aplicacoes' })
 @Unique(['candidato', 'vaga'])
@@ -38,4 +39,7 @@ export class Aplicacao {
   })
   @JoinColumn({ name: 'vaga_id' })
   vaga: Vaga;
+
+  @OneToMany(() => ProgressoCandidato, (progressoCandidato) => progressoCandidato.aplicacao)
+  progressoCandidatos: ProgressoCandidato[];
 }
