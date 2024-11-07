@@ -56,6 +56,14 @@ export class AplicacaoService {
     return aplicacao;
   }
 
+  async buscarAplicacaoPorId(id: number): Promise<Aplicacao> {
+    const aplicacao = await this.aplicacaoRepository.findOne({ where: { id } });
+    if (!aplicacao) {
+      throw new NotFoundException(`Aplicação com ID ${id} não encontrada`);
+    }
+    return aplicacao;
+  }
+
   async deleteAplicacao(id: number): Promise<void> {
     const resultado = await this.aplicacaoRepository.delete(id);
     if (resultado.affected === 0) {

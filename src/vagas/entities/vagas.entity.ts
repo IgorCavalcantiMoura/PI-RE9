@@ -9,6 +9,8 @@ import {
 import { Aplicacao } from '../../aplicacoes/entities/aplicacao.entity';
 import { Empresa } from '../../empresas/entities/empresa.entity';
 import { ApiProperty } from '@nestjs/swagger'; 
+import { Fase } from '../../fase/entities/fase.entity';
+
 
 @Entity({ name: 'tb_vagas' })
 export class Vaga {
@@ -80,4 +82,7 @@ export class Vaga {
 
   @OneToMany(() => Aplicacao, (aplicacao) => aplicacao.vaga)
   aplicacoes: Aplicacao[];
+
+  @OneToMany(() => Fase, (fase) => fase.vaga, { cascade: true })
+  fases: Fase[];
 }
