@@ -11,7 +11,7 @@ import { AplicacoesModule } from './aplicacoes/aplicacoes.module';
 import { DevService } from './data/services/dev.service';
 import { AppController } from './app.controller';
 import { FaseModule } from './fase/fase.module';
-import { ProgressoCandidatoModule } from './progresso-candidato/progresso-candidato.module';
+
 
 @Module({
   imports: [
@@ -27,7 +27,6 @@ import { ProgressoCandidatoModule } from './progresso-candidato/progresso-candid
     VagasModule,
     AplicacoesModule,
     FaseModule,
-    ProgressoCandidatoModule,
   ],
   controllers: [AppController],
   providers: [],
