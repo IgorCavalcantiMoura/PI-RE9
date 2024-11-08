@@ -6,7 +6,7 @@ import { EmpresaJwtStrategy } from './strategy/empresa-jwt.strategy';
 import { CandidatoJwtStrategy } from './strategy/candidato-jwt.strategy';
 import { EmpresaAuthController } from './controllers/empresa-auth.controller';
 import { CandidatoAuthController } from './controllers/candidato-auth.controller';
-import { AuthService } from './services/auth.service';
+
 import { EmpresasService } from '../empresas/services/empresa.service';
 import { CandidatoService } from '../candidatos/services/candidato.service';
 import { EmpresaLocalStrategy } from './strategy/empresa-local.strategy';
@@ -14,7 +14,7 @@ import { CandidatoLocalStrategy } from './strategy/candidato-local.strategy';
 import { EmpresaLocalAuthGuard } from './guard/empresa-local-auth-guard';
 import { CandidatoLocalAuthGuard } from './guard/candidato-local-auth-guard';
 import { CandidatoJwtAuthGuard, EmpresaJwtAuthGuard } from './guard/jwt-auth.guard';
-import { AuthController } from './controllers/auth.controller';
+
 import { EmpresasModule } from '../empresas/empresas.module';
 import { CandidatoModule } from '../candidatos/candidatos.module';
 import { EmpresaAuthService } from './services/empresa-auth.service';
@@ -31,7 +31,6 @@ import { CandidatoAuthService } from './services/candidato-auth.service';
     }),
   ],
   providers: [
-    AuthService,
     EmpresasService,
     CandidatoService,
     EmpresaLocalStrategy,
@@ -45,7 +44,7 @@ import { CandidatoAuthService } from './services/candidato-auth.service';
     EmpresaAuthService,
     CandidatoAuthService
   ],
-  controllers: [EmpresaAuthController, CandidatoAuthController, AuthController],
-  exports: [AuthService],
+  controllers: [EmpresaAuthController, CandidatoAuthController],
+  exports: [EmpresaAuthService, CandidatoAuthService],
 })
 export class AuthModule {}
