@@ -41,9 +41,10 @@ export class CandidatoService {
   }
 
   async salvarCurriculo(candidatoId: number, curriculo: Express.Multer.File): Promise<void> {
-    const candidato = await this.buscarPorId(candidatoId);
-    
-    candidato.curriculo = curriculo.buffer; // Armazena o conteúdo do PDF como BLOB
-    await this.candidatoRepository.save(candidato);
+    // Atualiza apenas o campo `curriculo` do candidato com o ID especificado
+    await this.candidatoRepository.update(
+      { id: candidatoId },
+      { curriculo: curriculo.buffer } // ou o caminho, caso o arquivo seja armazenado externamente
+    );
   }
 }
