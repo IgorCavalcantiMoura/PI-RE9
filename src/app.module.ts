@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { UsuarioModule } from './usuario/usuario.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { CandidatoModule } from './candidatos/candidatos.module';
 import { ConfigModule } from '@nestjs/config';
@@ -18,11 +17,10 @@ import { ProgressoDoCandidatoModule } from './progresso-do-candidato/progresso-d
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: ProdService,
+      useClass: DevService,
       imports: [ConfigModule],
     }),
     AuthModule,
-    UsuarioModule,
     EmpresasModule,
     CandidatoModule,
     VagasModule,

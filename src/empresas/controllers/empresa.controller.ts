@@ -25,7 +25,7 @@ import {
 @ApiTags('Empresas')
 @ApiBearerAuth() // Informa que as rotas estão protegidas por autenticação JWT
 @Controller('empresas')
-@UseGuards(AuthGuard('jwt')) // Aplica o guard para todas as rotas deste controlador
+
 export class EmpresasController {
   constructor(private readonly empresasService: EmpresasService) {}
 

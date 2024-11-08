@@ -1,50 +1,35 @@
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { Bcrypt } from '../bcrypt/bcrypt';
-import { UsuarioLogin } from '../entities/usuariologin.entity';
-import { UsuarioService } from '../../usuario/services/ususario.service';
+import { EmpresasService } from '../../empresas/services/empresa.service';
+import { CandidatoService } from '../../candidatos/services/candidato.service';
 
 
 @Injectable()
-export class AuthService{
-    constructor(
-        private usuarioService: UsuarioService,
-        private jwtService: JwtService,
-        private bcrypt: Bcrypt
-    ){ }
+export class AuthService {
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly empresasService: EmpresasService,
+    private readonly candidatosService: CandidatoService,
+  ) {}
 
-    async validateUser(username: string, password: string): Promise<any>{
-
-        const buscaUsuario = await this.usuarioService.findByUsuario(username)
-
-        if(!buscaUsuario)
-            throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
-
-        const matchPassword = await this.bcrypt.compararSenhas(password, buscaUsuario.senha)
-
-        if(buscaUsuario && matchPassword){
-            const { senha, ...resposta } = buscaUsuario
-            return resposta
-        }
-
-        return null
-
+  async validateEmpresa(email: string, senha: string) {
+    const empresa = await this.empresasService.findByEmail(email);
+    if (empresa && await empresa.verifyPassword(senha)) {
+      return { id: empresa.id, email: empresa.email };
     }
+    throw new UnauthorizedException('Credenciais inválidas para empresa');
+  }
 
-    async login(usuarioLogin: UsuarioLogin){
-
-        const payload = { sub: usuarioLogin.usuario }
-
-        const buscaUsuario = await this.usuarioService.findByUsuario(usuarioLogin.usuario)
-
-        return{
-            id: buscaUsuario.id,
-            nome: buscaUsuario.nome,
-            usuario: usuarioLogin.usuario,
-            senha: '',
-            foto: buscaUsuario.foto,
-            token: `Bearer ${this.jwtService.sign(payload)}`,
-        }
-
+  async validateCandidato(email: string, senha: string) {
+    const candidato = await this.candidatosService.findByEmail(email);
+    if (candidato && await candidato.verifyPassword(senha)) {
+      return { id: candidato.id, email: candidato.email };
     }
+    throw new UnauthorizedException('Credenciais inválidas para candidato');
+  }
+
+  async login(user: any, userType: 'empresa' | 'candidato') {
+    const payload = { sub: user.id, email: user.email, role: userType };
+    return { access_token: this.jwtService.sign(payload) };
+  }
 }

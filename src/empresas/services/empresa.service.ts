@@ -28,6 +28,11 @@ export class EmpresasService {
     return empresa;
   }
 
+  // Método para buscar uma empresa pelo email
+  async findByEmail(email: string): Promise<Empresa | undefined> {
+    return await this.empresaRepository.findOne({ where: { email } });
+  }
+
   async update(id: number, empresaAtualizada: Partial<Empresa>): Promise<Empresa> {
     await this.findById(id); // Verifica se a empresa existe
     await this.empresaRepository.update(id, empresaAtualizada);

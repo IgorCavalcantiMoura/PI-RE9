@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import { Vaga } from '../../vagas/entities/vagas.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import * as bcrypt from 'bcrypt';
 
 @Entity({ name: 'tb_empresas' })
 export class Empresa {
@@ -32,6 +35,24 @@ export class Empresa {
   @ApiProperty({ description: 'CEP da empresa', example: '12345-678' })
   @Column({ type: 'varchar' })
   cep: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  senha: string;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    if (this.senha) {
+      this.senha = await bcrypt.hash(this.senha, 10);
+    }
+  }
+
+  async verifyPassword(senha: string): Promise<boolean> {
+    return await bcrypt.compare(senha, this.senha);
+  }
 
   @ApiProperty({
     description: 'Data de criação do registro',

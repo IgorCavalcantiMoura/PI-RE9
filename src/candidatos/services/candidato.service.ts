@@ -29,6 +29,10 @@ export class CandidatoService {
     return candidato;
   }
 
+  async findByEmail(email: string): Promise<Candidato | undefined> {
+    return this.candidatoRepository.findOne({ where: { email } });
+  }
+
   async deletarCandidato(id: number): Promise<void> {
     const resultado = await this.candidatoRepository.delete(id);
     if (resultado.affected === 0) {

@@ -5,7 +5,6 @@ import {
   Param,
   Delete,
   Body,
-  UseGuards,
   UploadedFile,
   UseInterceptors,
   BadRequestException,
@@ -21,7 +20,6 @@ import {
   ApiParam,
 } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { CandidatoService } from '../services/candidato.service';
 import { Candidato } from '../entities/candidato.entity';
 import { Response } from 'express';
@@ -31,7 +29,7 @@ const fileTypes = ['application/pdf'];
 @ApiTags('Candidatos')
 @ApiBearerAuth()
 @Controller('candidatos')
-@UseGuards(JwtAuthGuard)
+
 export class CandidatoController {
   constructor(private readonly candidatoService: CandidatoService) {}
 
