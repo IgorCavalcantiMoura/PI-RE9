@@ -17,7 +17,7 @@ import { ProgressoDoCandidatoModule } from './progresso-do-candidato/progresso-d
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: DevService,
+      useClass: ProdService,
       imports: [ConfigModule],
     }),
     AuthModule,
