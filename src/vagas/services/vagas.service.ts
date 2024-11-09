@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { lastValueFrom } from 'rxjs';
@@ -7,8 +7,6 @@ import { Vaga } from '../entities/vagas.entity';
 
 @Injectable()
 export class VagaService {
-  private cepCache = new Map<string, { lat: number; lng: number }>();
-
   constructor(
     @InjectRepository(Vaga)
     private vagaRepository: Repository<Vaga>,
@@ -38,7 +36,7 @@ export class VagaService {
     const nearbyVagas = [];
 
     for (const vaga of vagas) {
-      if (vaga.cep) {
+      // if (vaga.cep) {
         const vagaCoordinates = await this.getCoordinatesFromCep(vaga.cep);
         if (vagaCoordinates) {
           const distance = this.calculateDistance(
@@ -50,7 +48,7 @@ export class VagaService {
           if (distance <= maxDistance) {
             nearbyVagas.push(vaga);
           }
-        }
+        // }
       }
     }
     return nearbyVagas;
@@ -70,21 +68,11 @@ export class VagaService {
   }
 
   private async getCoordinatesFromCep(cep: string): Promise<{ lat: number; lng: number }> {
-    if (this.cepCache.has(cep)) {
-      return this.cepCache.get(cep);
-    }
-
-    try {
       const response = await lastValueFrom(
         this.httpService.get(`https://cep.awesomeapi.com.br/json/${cep}`)
       );
       const { lat, lng } = response.data;
-      const coordinates = { lat: parseFloat(lat), lng: parseFloat(lng) };
-      this.cepCache.set(cep, coordinates);
-      return coordinates;
-    } catch (error) {
-      throw new InternalServerErrorException(`Erro ao obter coordenadas para o CEP ${cep}`);
-    }
+      return { lat: parseFloat(lat), lng: parseFloat(lng) };
   }
 
   private calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
