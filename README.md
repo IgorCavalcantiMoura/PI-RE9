@@ -75,7 +75,7 @@ Esta é uma plataforma para o cadastro e busca de vagas de emprego, desenvolvida
 
  1- Clone o repositório:
 ```
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/IgorCavalcantiMoura/PI-RE9.git
 ```
 cd nome-do-repositorio
 
