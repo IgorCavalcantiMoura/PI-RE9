@@ -99,7 +99,7 @@ npm run start
 <br>
 
 > [!NOTE]
-> O servidor será executado em http://localhost:3000.
+> A documentação está disponível em: https://re9acoes.onrender.com/swagger
 
 <br>
 
