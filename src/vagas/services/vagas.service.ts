@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { lastValueFrom } from 'rxjs';
@@ -7,8 +7,6 @@ import { Vaga } from '../entities/vagas.entity';
 
 @Injectable()
 export class VagaService {
-  
-
   constructor(
     @InjectRepository(Vaga)
     private vagaRepository: Repository<Vaga>,

@@ -44,15 +44,7 @@ export class VagaController {
     return this.vagaService.findAll();
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Buscar uma vaga pelo ID' })
-  @ApiParam({ name: 'id', type: 'number', description: 'ID da vaga' })
-  @ApiResponse({ status: 200, description: 'Vaga encontrada', type: Vaga })
-  @ApiResponse({ status: 404, description: 'Vaga não encontrada' })
-  async findVagaById(@Param('id') id: number): Promise<Vaga> {
-    return this.vagaService.findVagaById(id);
-  }
-
+  
   @Get('nearby')
   @ApiOperation({ summary: 'Buscar vagas próximas a um CEP' })
   @ApiQuery({ name: 'cep', type: 'string', description: 'CEP de referência' })
@@ -71,12 +63,16 @@ export class VagaController {
     @Query('cep') referenceCep: string,
     @Query('maxDistance') maxDistance: number,
   ): Promise<Vaga[]> {
-    if (!referenceCep || !maxDistance) {
-      throw new NotFoundException(
-        'CEP de referência e distância máxima são obrigatórios',
-      );
-    }
     return this.vagaService.findNearbyCep(referenceCep, maxDistance);
+  }
+  
+  @Get(':id')
+  @ApiOperation({ summary: 'Buscar uma vaga pelo ID' })
+  @ApiParam({ name: 'id', type: 'number', description: 'ID da vaga' })
+  @ApiResponse({ status: 200, description: 'Vaga encontrada', type: Vaga })
+  @ApiResponse({ status: 404, description: 'Vaga não encontrada' })
+  async findVagaById(@Param('id') id: number): Promise<Vaga> {
+    return this.vagaService.findVagaById(id);
   }
 
   @Put(':id')
