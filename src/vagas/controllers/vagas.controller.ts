@@ -69,7 +69,7 @@ export class VagaController {
   @ApiResponse({ status: 404, description: 'Vagas não encontradas' })
   async findNearbyCep(
     @Query('cep') referenceCep: string,
-    @Query('distance') maxDistance: number,
+    @Query('maxDistance') maxDistance: number,
   ): Promise<Vaga[]> {
     if (!referenceCep || !maxDistance) {
       throw new NotFoundException(
