@@ -1,4 +1,11 @@
-# 📌 Plataforma de Vagas de Emprego RE9
+<p align="center">
+  <img src="https://github.com/IgorCavalcantiMoura/PI-RE9-PROJETOS/blob/main/assets/imgre9.png?raw=true" />
+</p>
+
+
+<h1 align="center">📌 Plataforma de Vagas de Emprego RE9</h1>
+
+
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge"/>
